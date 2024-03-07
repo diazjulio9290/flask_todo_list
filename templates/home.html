@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Tasks</h2>
+        <ul class="list-group mb-3">
+            {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ task.task }}
+                <div>
+                    <a href="/delete/{{ task.id }}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </li>
+            {% else %}
+            <li class="list-group-item">No tasks yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <!-- Form for adding new tasks -->
+        <h2>Add Task</h2>
+        <form action="/" method="POST">
+            <div class="form-group">
+                <input type="text" name="content" id="content" class="form-control" placeholder="New Task" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
